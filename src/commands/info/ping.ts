@@ -1,4 +1,4 @@
-import { Command } from '../../structures/Command'
+import { Command } from '../../structures/command'
 
 export default new Command({
   name: 'ping',

@@ -4,11 +4,11 @@ import {
   ClientEvents,
   Collection,
 } from 'discord.js'
-import { CommandType } from '../typings/Command'
+import { CommandType } from '../typings/command'
 import glob from 'glob'
 import { promisify } from 'util'
 import { RegisterCommandsOptions } from '../typings/client'
-import { Event } from './Event'
+import { Event } from './event'
 
 const globPromise = promisify(glob)
 
@@ -21,7 +21,7 @@ export class ExtendedClient extends Client {
 
   start() {
     this.registerModules()
-    this.login(process.env.botToken)
+    this.login(process.env.BOT_TOKEN)
   }
   async importFile(filePath: string) {
     return (await import(filePath))?.default
@@ -63,7 +63,7 @@ export class ExtendedClient extends Client {
     this.on('ready', () => {
       this.registerCommands({
         commands: slashCommands,
-        guildId: process.env.guildId,
+        guildId: process.env.GUILD_ID,
       })
     })
 
