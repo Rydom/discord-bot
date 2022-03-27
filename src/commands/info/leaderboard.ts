@@ -1,6 +1,9 @@
 import { MessageEmbed } from 'discord.js'
+import {
+  LeaderBoard,
+  ValorantRepository,
+} from '../../external/repositories/valorant.repository'
 import { Command } from '../../structures/command'
-import rankedPlayers from '../../utils/valorant'
 
 type LeaderBoardItem = {
   rank: number
@@ -10,25 +13,37 @@ export default new Command({
   name: 'leaderboard',
   description: 'replies with leaderboard of valorant players',
   run: async ({ interaction, client }) => {
+    const description = await createLeaderList()
     const embed = new MessageEmbed()
       .setTitle('Melhores jogadores de valorant')
-      .setDescription(createLeaderList())
+      .setDescription(description)
 
     interaction.followUp({ embeds: [embed] })
 
-    function createLeaderList() {
-      const leaderboard: string[] = []
-      for (const player of rankedPlayers.players) {
+    async function createLeaderList() {
+      const leaderList: string[] = []
+      const leaderboard = await getLeaderboard()
+
+      for (const player of leaderboard.players) {
         const item = {
           rank: player.leaderboardRank,
           name: player.gameName || 'Sem nome',
         }
 
         const rankPlayer = `${item.rank}) ${item.name}`
-        leaderboard.push(rankPlayer)
+        leaderList.push(rankPlayer)
       }
 
-      return leaderboard.join('\n')
+      return leaderList.join('\n')
+    }
+
+    async function getLeaderboard() {
+      const valorantRepo = new ValorantRepository()
+      const leaderboard = await valorantRepo
+        .getLeaderboards({ size: 15, startIndex: 0 })
+        .then(res => res.data)
+
+      return leaderboard
     }
   },
 })
