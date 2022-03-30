@@ -10,9 +10,10 @@ export default (client: ExtendedClient) => {
   return new Manager({
     nodes: [
       {
-        host: 'localhost',
-        password: 'lavalink1234',
-        port: 2333,
+        host: process.env.LAVALINK_HOST ?? 'localhost',
+        password: process.env.LAVALINK_PASS ?? 'lavalink1234',
+        port: 443,
+        secure: true,
         // retryDelay: 5000,
       },
     ],
