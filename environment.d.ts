@@ -6,6 +6,8 @@ declare global {
       ENVIRONMENT: 'dev' | 'prod' | 'debug'
       VALORANT_API_HOST: string
       VALORANT_API_TOKEN: string
+      LAVALINK_HOST: string
+      LAVALINK_PASS: string
     }
   }
 }

@@ -1,7 +1,7 @@
 {
   "name": "@rydom/discord-bot",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "engines": {
     "node": "16.x"
   },
@@ -9,7 +9,8 @@
     "dev": "ts-node-dev src/index.ts",
     "start": "ts-node src/index.ts",
     "start:prod": "node dist/index.js",
-    "build": "tsc",
+    "prebuild": "rimraf dist",
+    "build": "npm run prebuild && tsc",
     "watch": "tsc -w"
   },
   "keywords": [],
@@ -21,7 +22,8 @@
     "discord.js": "^13.5.0",
     "dotenv": "^10.0.0",
     "erela.js": "^2.3.3",
-    "glob": "^7.2.0"
+    "glob": "^7.2.0",
+    "rimraf": "^3.0.2"
   },
   "devDependencies": {
     "@types/glob": "^7.2.0",
