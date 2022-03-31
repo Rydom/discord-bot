@@ -8,8 +8,9 @@
   "scripts": {
     "dev": "tsnd --respawn --transpile-only src/index.ts",
     "start": "ts-node src/index.ts",
-    "start:prod": "rimraf dist && tsc && node dist/index.js",
-    "watch": "tsc -w"
+    "start:prod": "rimraf dist && npm run compile && node dist/index.js",
+    "watch": "tsc -w",
+    "compile": "tsc"
   },
   "keywords": [],
   "author": "Ramon Oliveira",
