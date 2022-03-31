@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const command_1 = require("../../structures/command");
+const format_1 = require("../../utils/format");
 exports.default = new command_1.Command({
     name: 'play',
     description: 'Faz com que o bot toque uma música no canal em que você está',
@@ -60,7 +61,7 @@ exports.default = new command_1.Command({
         if (!player.playing && !player.paused)
             player.play();
         return interaction.followUp({
-            content: `\`${firstMusic.title}\` adicionada à fila`,
+            content: `\`${firstMusic.title}\` adicionada à fila (\`${(0, format_1.formatDuration)(firstMusic.duration)}\`)`,
         });
     },
 });

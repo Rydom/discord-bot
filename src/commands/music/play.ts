@@ -1,5 +1,6 @@
 import { SearchResult } from 'erela.js'
 import { Command } from '../../structures/command'
+import { formatDuration } from '../../utils/format'
 
 export default new Command({
   name: 'play',
@@ -67,7 +68,7 @@ export default new Command({
     if (!player.playing && !player.paused) player.play()
 
     return interaction.followUp({
-      content: `\`${firstMusic.title}\` adicionada à fila`,
+      content: `\`${firstMusic.title}\` adicionada à fila (\`${formatDuration(firstMusic.duration)}\`)`,
     })
   },
 })

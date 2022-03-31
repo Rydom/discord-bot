@@ -3,7 +3,9 @@ import { Manager } from 'erela.js'
 import { ExtendedClient } from './client'
 
 type Requester = {
+  id: string
   tag: string
+  username: string
 }
 
 export default (client: ExtendedClient) => {
@@ -38,7 +40,7 @@ export default (client: ExtendedClient) => {
       channel.send(
         `Tocando agora: \`${
           track.title
-        }\`, solicitado por \`${requester.tag.toString()}\`.`
+        }\`, solicitado por <@${requester.id}>`
       )
     })
     .on('queueEnd', player => {

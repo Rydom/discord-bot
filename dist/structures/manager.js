@@ -23,7 +23,7 @@ exports.default = (client) => {
         .on('trackStart', (player, track) => {
         const channel = client.channels.cache.get(player.textChannel);
         const requester = track.requester;
-        channel.send(`Tocando agora: \`${track.title}\`, solicitado por \`${requester.tag.toString()}\`.`);
+        channel.send(`Tocando agora: \`${track.title}\`, solicitado por <@${requester.id}>`);
     })
         .on('queueEnd', player => {
         const channel = client.channels.cache.get(player.textChannel);
