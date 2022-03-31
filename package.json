@@ -6,11 +6,9 @@
     "node": "16.x"
   },
   "scripts": {
-    "prebuild": "rimraf dist",
-    "build": "npm run prebuild && tsc",
     "dev": "tsnd --respawn --transpile-only src/index.ts",
     "start": "ts-node src/index.ts",
-    "start:prod": "npm run build && node dist/index.js",
+    "start:prod": "rimraf dist && tsc && node dist/index.js",
     "watch": "tsc -w"
   },
   "keywords": [],
